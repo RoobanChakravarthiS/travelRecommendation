@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommender</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style> 
+        html{
+            scroll-behavior: smooth;
+        }
+        ::placeholder{
+            color: #10b6cd;
+            font-weight: 700;
+        }
+        body{
+            color: white;
+            background-image: url(travel.avif);
+            width: 100vw;
+            height: 100vh;
+            margin: 0%;
+        }
+        #navBar{
+            display: grid;
+            grid-template-columns: 25% 35% 40%;
+            background: rgb(2,12,22);
+            background: linear-gradient(90deg, rgba(2,12,22,1) 0%, rgba(28,93,156,1) 63%, rgba(13,113,125,1) 99%);
+            
+            align-items: center;
+            margin-top: 0%;
+            
+            width: 100%;
+            position:fixed;
+        }
+        #searchLayout{
+            position: relative;
+            display: inline;
+            padding-left: 20px;
+            width: 370px;
+            align-self: center;
+            height:50px;
+        }
+        #searchBar{
+            border-radius: 10px;
+            margin-top: 7px;
+            height: 2rem;
+            width: 20rem;
+            border: 0px;
+        }
+        #search{
+            display: inline;
+            position: relative;
+            
+        
+        }
+        #searchBtn{
+            
+            
+            border-radius: 5px;
+            position: absolute;
+            color: #10b6cd;
+            background-color: #f1f1f1;
+            border: solid 0px;
+            right: 4rem;
+            top:0.5px;
+            font-weight: 700;
+        }
+        #clearBtn{
+            background-color: #f1f1f1;
+            font-weight: 700;
+            color: #10b6cd;
+            border: solid 0px;
+            border-radius: 5px;
+            position: absolute;
+            right:0.8rem;
+            top: 0.5px;
+        }
+        #clearBtn:hover{
+            background-color: #10b6cd;
+            color: #F1F1F1;
+            transition: all .5S;
+        }
+        #searchBtn:hover{
+            background-color: #10b6cd;
+            color: #F1F1F1;
+            transition: all .5S;
+        }
+        #navContents{
+            align-items: center;
+            justify-content:center;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+            padding :9px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            
+            
+        }
+        a:hover{
+            background-color: #F1F1F1;
+            color: #10b6cd;
+            border-radius: 8px;
+            transition: all .3s;
+        }
+        h1{
+            width: fit-content;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight:900;
+            /* margin-top: 20px; */
+            margin: 0%;
+            font-size: 4rem;
+        }
+        #header ,#middle,#footer{
+            margin: 80px;
+        }
+        #bookNow{
+            background-color: #10b6cd;
+            color: #F1F1F1;
+            transition: all .5S;
+            border-radius: 4px;
+            border: solid 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 100px;
+            height: 30px;
+            font-weight:900;
+        }
+        #bookNow:hover{
+            background-color: #f1f1f1;
+            color: #10b6cd;
+            transition: all .5S;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        p{
+            width: fit-content;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight:500;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: 7vw 93vw; /* Define three columns with widths of 100px, 200px, and 100px */
+            height: 100vh;
+            width: 100vw;
+            background: linear-gradient(90deg, rgba(2,12,22,0.7) 0%, rgba(28,93,156,0.6) 63%, rgba(13,113,125,0.3) 99%);
+
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        i{
+            padding-bottom: 20px;
+            padding-top: 15px;
+        }
+        .item2{
+            display: grid;
+            grid-template-columns: 50% 50%;
+
+        }
+        .team{
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            grid-column-gap: 15px;
+            border-radius: 6px;
+            padding: 50px;
+        }
+        .abtMain{
+            padding: 50px;
+        }
+        .cards{
+            background-color: #24293e62;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            align-items:center ;
+        }
+        h2{
+            width: fit-content;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .cards>button{
+            background-color: rgba(28,93,156,1);
+            color: #F1F1F1;
+            height: 30px;
+            font-weight: 900;
+            border-radius: 5px;
+            border: solid 0px;
+        }
+        .mainFrame{
+            overflow-y: auto;
+        }
+        #Contact{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            padding-top: 300px;
+            padding-bottom: 200px;
+        }
+        .form{
+            background-color: #24293e62;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-family: Arial, Helvetica, sans-serif;
+            width: fit-content;
+        }
+        input{
+            border-radius: 10px;
+            border: solid rgba(28,93,156,1) 1px;
+            width: 500px;
+            height: 35px;
+            background-color: #24293e62;
+
+        }
+        #send{
+            background-color: rgba(28,93,156,1);
+            color: #F1F1F1;
+            height: 30px;
+            font-weight: 900;
+            border-radius:10px;
+            margin-top: 8px;
+            border: solid 0px;
+            width: 500px;
+            
+
+        }
+        .timeZone{
+            height: 50px;
+            width: 500px;
+            border-radius: 8px;
+            border: 0px;
+            background-color: rgba(28,93,156,1);
+            margin-top: 100px;
+            margin-left: 40px;
+            color: #F1F1F1;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            text-align: center;
+            justify-content: center;
+        }
+        .timeZone >h3{
+         
+        }
+        #display{
+            justify-content: center;
+            text-align: center;
+        }
+        .card{
+            text-align: center;
+            width: 400px;
+            height: 300px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-left: 100px;
+            color: rgba(28,93,156,1);
+            margin: 10px;
+            margin-left: 100px;
+        }
+        .card >img{
+            width: 400px;
+            height: 150px;
+        }
+        .card>button{
+            background-color: rgba(28,93,156,1);
+            color: #F1F1F1;
+            height: 30px;
+            font-weight: 900;
+            border-radius:10px;
+            
+            border: solid 0px;
+            width: 50px;
+        }
+        .card>p{
+            margin-bottom: 2px;
+        }
+        .title>h3{
+            margin-bottom: 0%;
+            margin-left: 5px;
+            margin-top: 25px;
+        }
+        .title{
+            font-weight: bolder;
+            font-style:italic ;
+            align-items: start;
+            justify-content: start;
+            display: flex;
+        }
+    </style>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
+</head>
+<body>
+    <div id="navBar">
+        <div class="title">
+            <i class="fa fa-plane" aria-hidden="true" style="font-size: 36px;"></i>
+            <h3>Travel Blossom</h3>
+        </div>
+        <nav id="navContents"> 
+            <a href="#Home">Home</a>
+            <a href="#About">About Us</a>
+            <a href="#Contact">Contact Us</a>
+        </nav>
+        <div id="searchLayout">
+            <div id="search">
+                <input type="text" placeholder="Enter a Destination or Keyword" id="searchBar">
+                <button type="submit" id="searchBtn">Search</button>
+                <button type="submit" id="clearBtn">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="item" class="item">
+            <hr size="250px">
+                <i class='fa fa-twitter' style='font-size:36px'></i>
+                <i class='fa fa-facebook-f' style='font-size:36px'></i>
+                <i class='fa fa-instagram' style='font-size:36px'></i>
+                <i class="fa fa-youtube-play" style='font-size:36px'></i>
+        </div>
+
+        <div id="item" class="mainFrame" >
+            <div class="item2">
+                <div id="Home">
+                    <div id="header">
+                        <h1>EXPLORE </h1>
+                        <h1>DREAM</h1>
+                        <h1>DESTINATION</h1>
+                    </div>
+                    <div id="middle">
+                        <p>"Travel is the only thing you buy that makes you richer." - Anonymous</p>
+                        <p> "The world is a book, and those who do not travel read only a page." - Saint Augustine</p>
+                        <p>"Adventure is out there!" - Up</p>
+                    </div>
+                    <div id="footer">
+                        <button id="bookNow">BOOK NOW</button>
+                    </div>
+                </div>
+                <div id="display">
+                    <div class="timeZone" id="timeZone">
+
+                    </div>
+                    <div id="displayCard"></div>
+                </div>
+            </div>
+            
+            <hr>
+            <div id="About">
+                <div class="abtMain">
+                    <h1>ABOUT US</h1>
+                    <P>Welcome to Travel Recommender, your ultimate destination for personalized travel recommendations and unforgettable experiences around the globe. At Travel Recommender, we are passionate about exploring the world and helping you discover the perfect destinations tailored to your unique preferences and interests.
+
+                        With a team of seasoned travelers and local experts, we curate the finest selection of destinations, activities, and accommodations to inspire your next adventure. Whether you're seeking breathtaking natural landscapes, vibrant cultural experiences, or thrilling outdoor adventures, we have something for every traveler.
+                        
+                        Our mission is to provide you with reliable and insightful travel advice that empowers you to make informed decisions and create memories that last a lifetime. From hidden gems off the beaten path to iconic landmarks and must-visit attractions, we're here to guide you every step of the way.
+                        
+                        Whether you're a solo traveler, a couple seeking a romantic getaway, a family planning a fun-filled vacation, or a group of friends embarking on an epic journey, Travel Recommender is your trusted companion for all your travel needs.
+                        
+                        Join us on a journey of discovery, exploration, and unforgettable experiences. Let's explore the world together and make your travel dreams a reality.
+                        
+                        Feel free to customize this paragraph to better reflect your website's unique vision and tone. If you have specific keywords, themes, or branding elements you'd like to incorporate, let me know, and I can tailor the paragraph accordingly!
+                        </P>
+                    </div>
+                    <div class="team">
+                        <div class="heading">
+                            <h1 style="margin-top: 0%">OUR </h1>
+                            <h1 style="margin-top: 0%">TEAM</h1>
+                        </div>
+                        <div class="cards">
+                            <h2>John Doe</h2>
+                            <p>John is responsible for</p>
+                            <button id="teamButton">CEO</button>
+                        </div>
+                        <div class="cards">
+                            <h2>Celina Thomas</h2>
+                            <p>Celina is responsible for</p>
+                            <button id="teamButton">Team Lead</button>
+                        </div>
+                        <div class="cards">
+                            <h2>Mike Tyson</h2>
+                            <p>Mike is responsible for</p>
+                            <button id="teamButton">Deliver Head</button>
+                        </div>
+                    </div>
+            </div>
+            <hr>
+            <div id="Contact">
+                <div class="con">
+                    <h1>CONTACT US</h1>
+                    <h3>Get in Touch</h3>
+                </div>
+                <div class="form">
+                    <form>
+                        <h5>Name</h5>
+                        <input type="text" placeholder="Enter your Name"> 
+                        <h5>Email</h5>
+                        <input type="text" placeholder="Enter your Email">
+                        <h5>Message</h5>
+                        <input type="text" placeholder="Enter your Message">
+                        <button id="send">SEND</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src ="travel_recommendation.js"></script>
+</body>
+</html>
