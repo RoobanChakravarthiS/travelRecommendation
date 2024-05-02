@@ -15,7 +15,7 @@
         }
         body{
             color: white;
-            background-image: url(https://images.unsplash.com/photo-1713959957908-ca41293553b3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+            background-image: url(travel.avif);
             width: 100vw;
             height: 100vh;
             margin: 0%;
@@ -284,9 +284,13 @@
             justify-content: start;
             display: flex;
         }
-        .abtMain >p{
+        textarea{
+            border-radius: 10px;
+            border: solid rgba(28,93,156,1) 1px;
+            width: 500px;
+            height: 100px;
             background-color: #24293e62;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            resize: none;
         }
     </style>
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -398,7 +402,7 @@
                         <h5>Email</h5>
                         <input type="text" placeholder="Enter your Email">
                         <h5>Message</h5>
-                        <input type="text" placeholder="Enter your Message">
+                        <textarea type="text" placeholder="Enter your Message"></textarea>
                         <button id="send">SEND</button>
                     </form>
                 </div>
